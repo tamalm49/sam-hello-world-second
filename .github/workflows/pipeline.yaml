@@ -12,6 +12,7 @@ on:
 env:
   PIPELINE_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   PIPELINE_USER_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  SAM_CLI_TELEMETRY: 0 
   SAM_TEMPLATE: template.yaml
   TESTING_STACK_NAME: sam-app-hello-uat
   TESTING_PIPELINE_EXECUTION_ROLE: arn:aws:iam::202823104571:role/aws-sam-cli-managed-sam-app-h-PipelineExecutionRole-NwJ4ohJwEbrz
@@ -197,6 +198,7 @@ jobs:
             --region ${TESTING_REGION} \
             --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
             --no-fail-on-empty-changeset \
+            --no-confirm-changeset \
             --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
 
   integration-test:
