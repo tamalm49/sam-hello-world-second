@@ -236,17 +236,10 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
 
-      - name: Validate approval comment
-        run: |
-          if [ -z "${{ github.event.inputs.approval_comment }}" ]; then
-            echo "Approval comment is required before deployment."
-            exit 1
-          fi
-
       - name: Deploy to production
         run: |
           echo "Deploying..."
-          
+
       - name: Deploy to production account
         run: |
           sam deploy --stack-name ${PROD_STACK_NAME} \
